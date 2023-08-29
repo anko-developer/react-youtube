@@ -9,19 +9,15 @@
   margin-right: 40px;
 }
 
-.search {
+.searchForm {
   display: flex;
   flex: 1;
   max-width: 800px;
   margin: 0 auto;
-}
-
-.searchForm {
-  flex: 1;
 
   input {
-    width: 100%;
-    height: 100%;
+    flex: 1;
+    height: 40px;
     padding-left: 16px;
     box-sizing: border-box;
     border-radius: 40px 0 0 40px;

@@ -1,17 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styles from  './VideoCard.module.scss';
 
-export default function VideoCard({ title, channel, thumbnail, ...rest }) {
+export default function VideoCard({ video, ...rest }) {
+  const { videoId } = useParams();
   return (
     <div className={styles.card}>
-      <Link to='/videos/test'>
+      <Link to={`/videos/watch/${videoId}`}>
         <div className={styles.thumbnail}>
-          <img src={thumbnail} alt="썸네일" />
+          <img src={video.snippet.thumbnails.high.url} alt="썸네일" />
         </div>
         <div className={styles.content}>
-          <h3 className={styles.title}>{title}</h3>
-          <p className={styles.channel}>{channel}</p>
+          <h3 className={styles.title}>{video.snippet.title}</h3>
+          <p className={styles.channel}>{video.snippet.channelTitle}</p>
         </div>
       </Link>
     </div>
