@@ -1,6 +1,4 @@
 .card {
-  width: calc(25% - 6px);
-
   a {
     text-decoration: none;
   }
@@ -12,8 +10,7 @@
   border-radius: 20px;
 
   img {
-    // object-fit: cover;
-    max-width: 100%;
+    width: 100%;
   }
 }
 
@@ -28,7 +25,8 @@
   color: #fff;
 }
 
-.channel {
+.channel,
+.publishedAt {
   overflow: hidden;
   margin: 0;
   font-size: 14px;
