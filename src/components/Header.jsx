@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import logo from '../assets/images/logo.webp';
 import search from '../assets/images/icon-search.svg';
 import styles from './Header.module.scss';
+import classNames from 'classnames';
 
 export default function Header() {
   const { keyword } = useParams();
@@ -20,7 +21,7 @@ export default function Header() {
   useEffect(() => setText(keyword || ''), [keyword]);
 
   return (
-    <header className={styles.header}>
+    <header className={classNames(styles.header, 'py-4')}>
       <Link to='/'>
         <img className={styles.logo} src={logo} alt='Youtube' />
       </Link>
