@@ -5,7 +5,6 @@ import Youtube from '../api/youtube';
 
 export const YoutubeApiContext = createContext();
 
-// const youtube = new Youtube(); 
 const client = new YoutubeClient();
 const youtube = new Youtube(client);
 
