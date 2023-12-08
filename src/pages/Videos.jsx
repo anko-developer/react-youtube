@@ -1,32 +1,27 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import VideoCard from '../components/VideoCard';
-import { useYoutubeApi } from '../context/youtubeApiContext';
+import VideoCard from '../components/VideoCard/VideoCard';
+import { useYoutubeApi } from '../context/YoutubeApiContext';
 
-export default function Videos () {
+export default function Videos() {
   const { keyword } = useParams();
   const { youtube } = useYoutubeApi();
-  const {
-    isLoading,
-    error,
-    data: videos,
-  } = useQuery(['videos', keyword], () => youtube.search(keyword), {staleTime: 1000 * 60 * 1});
+  const { isLoading, error, data: videos } = useQuery({
+    queryKey: ['videos', keyword],
+    queryFn() {
+      return youtube.search(keyword);
+    }
+  });
 
-  if (isLoading) return <div>로딩중</div>
-  if (error) return <div>에러입니다</div>
-
-  console.log(videos);
-  
   return (
-    <>
-      {videos && (
-        <ul className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 gap-y-4'>
-          {videos.map(video => (
-            <VideoCard key={video.id} video={video} />
-          ))}
-        </ul>
-      )}
-    </> 
-  )
+    <section>
+      {isLoading && <p>로딩중</p>}
+      {error && <p>에러</p>}
+      {videos && <ul>
+          {videos.map((video) => <VideoCard key={video.id} video={video} />)}
+        </ul>}
+    </section>
+  );
 }
+

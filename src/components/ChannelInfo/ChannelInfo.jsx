@@ -1,10 +1,15 @@
 import React from 'react';
-import { useYoutubeApi } from '../context/youtubeApiContext';
+import { useYoutubeApi } from '../../context/YoutubeApiContext';
 import { useQuery } from '@tanstack/react-query';
 
 export default function ChannelInfo({ id, name }) {
   const { youtube } = useYoutubeApi();
-  const { error, isLoading, data: url } = useQuery(['channel', id], () => youtube.channelImageURL(id), {staleTime: 1000 * 60 * 5});
+  const { error, isLoading, data: url } = useQuery({
+    queryKey: ['channel', id],
+    queryFn: () => {
+      return youtube.channelImageURL(id), {staleTime: 1000 * 60 * 5}
+    }
+  });
   
   if (isLoading) return <div>로딩중...</div>
   if (error) return <div>에러...</div>

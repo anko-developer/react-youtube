@@ -1,12 +1,11 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import ChannelInfo from '../components/ChannelInfo';
-import RelatedVideos from '../components/RelatedVideos';
-
-export default function VideoDetail() {
-  const { state: { video } } = useLocation();
-  const { id, title, channelId, channelTitle, description } = video.snippet;
-  console.log(video);
+import ChannelInfo from '../components/ChannelInfo/ChannelInfo';
+export default function VideosDetail() {
+  const {
+    state: {video}
+  } = useLocation();
+  const { title, channelId, channelTitle, description } = video.snippet;
   return (
     <section className='flex flex-col lg:flex-row'>
       <article className='basis-4/6'>
@@ -17,9 +16,6 @@ export default function VideoDetail() {
           <pre className='whitespace-pre-wrap'>{description}</pre>
         </div>
       </article>
-      <section className='basis-2/6'>
-        <RelatedVideos id={id} />
-      </section>
     </section>
   );
 }
