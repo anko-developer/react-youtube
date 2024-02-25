@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function NotFound() {
+export default function Videos() {
   return (
     <div>
-      Not Found!
+      Videos
     </div>
   );
 }
