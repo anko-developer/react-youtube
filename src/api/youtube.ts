@@ -1,13 +1,14 @@
 export default class Youtube {
+  apiClient:
   constructor(apiClient) {
     this.apiClient = apiClient;
   }
 
-  search(keyword) {
+  search(keyword: string) {
     return keyword ? this.#searchByKeyword(keyword) : this.#mostPopular();
   }
 
-  async #searchByKeyword(keyword) {
+  async #searchByKeyword(keyword: string) {
     return this.apiClient.search({
       params: {
         part: 'snippet',

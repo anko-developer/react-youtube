@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
+import { APIResponse } from "../types/commonResponse";
 
 export default class YoutubeClient {
   httpClient;
@@ -10,7 +11,7 @@ export default class YoutubeClient {
     })
   }
 
-  async search(params): Promise<object> {
+  async search(params) {
     return this.httpClient.get('search', params);
   }
 
